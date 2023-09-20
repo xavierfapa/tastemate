@@ -1,0 +1,45 @@
+.Home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  width: 100vw;
+  height: 100vh;
+  /* background-color: antiquewhite; */
+  & .header{
+    & h2 {
+      text-align: center;
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
+    & img {
+      width: 100px;
+    }
+  }
+  & .session {
+    & h3 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    & button {
+      background-color: transparent;
+      margin: auto;
+      min-width: 200px;
+      border: 1px solid black;
+      padding: 5px 0px;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 15px;
+    }
+    & p {
+      margin-bottom: 50px;
+      margin-top: 30px;
+      font-size: 14px;
+      & .link {
+        font-weight: 600;
+      }
+    }
+  }
+
+}
