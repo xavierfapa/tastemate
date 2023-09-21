@@ -27,3 +27,19 @@ export async function getUserRecipies (userId: string) {
     console.log(error);
   }
 }
+
+export async function postImage (image: any) {
+  try {
+    const response = await fetch(`${BASE_URL}/image`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(image)
+    })
+    const data = await response.text();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}

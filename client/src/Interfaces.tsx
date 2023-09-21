@@ -21,5 +21,5 @@ export type Recipie = {
   ingredients: string
   userId: string
   _id: string
-  image: []
+  images: string[]
 }
