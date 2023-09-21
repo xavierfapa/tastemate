@@ -1,6 +1,33 @@
-.goBack-Recipies {
-  position: absolute;
-  width: 20px;
-  top: 20px;
-  left: 20px;
+.user-recipies-header {
+  display: flex;
+  margin-top: 20px;
+  margin-left: 20px;
+  gap: 10px;
+  & .goBack-Recipies {
+    width: 20px;
+    top: 20px;
+    left: 20px;
+  }
+}
+
+.UserRecipies {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  padding-inline: 20px;
+  justify-content: space-between;
+  & .recipie-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    & img {
+      width: 43vw;
+      border-radius: 15px;
+      background-color: blue;
+    }
+    & p {
+      padding-left: 10px;
+      padding-top: 5px;
+    }
+  }
 }

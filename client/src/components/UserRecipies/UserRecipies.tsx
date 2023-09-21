@@ -30,16 +30,22 @@ function UserRecipies() {
   }
 
   return (
-    <div className='UserRecipies'>
-      <img onClick={goBack} src={goBackIcon} className='goBack-Recipies' />
-      {recipies.map(recipie => (
-        <div key={recipie._id} className="recipie-container">
-          <p>{recipie.title}</p>
-          <p>{recipie.description}</p>
-          <p>{recipie.ingredients}</p>
-        </div>
-      ))}
-    </div>
+    <>
+      <div className="user-recipies-header">
+        <img onClick={goBack} src={goBackIcon} className='goBack-Recipies' />
+        <h3>My recipies</h3>
+      </div>
+      <div className='UserRecipies'>
+        {recipies.map(recipie => (
+          <div key={recipie._id} className="recipie-container">
+            <img src={recipie.images[0]} />
+            <p>{recipie.title}</p>
+            {/* <p>{recipie.description}</p>
+            <p>{recipie.ingredients}</p> */}
+          </div>
+        ))}
+      </div>
+    </>
   )
 }
 
