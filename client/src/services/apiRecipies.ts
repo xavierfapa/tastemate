@@ -17,3 +17,13 @@ export async function postRecipie (recipie: Recipie) {
     console.log(error);
   }
 }
+
+export async function getUserRecipies (userId: string) {
+  try {
+    const response = await fetch(`${BASE_URL}/recipies/${userId}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}

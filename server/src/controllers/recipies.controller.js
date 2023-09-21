@@ -1,13 +1,13 @@
 import Recipie from '../models/recipies.model.js';
 
 export async function createRecipie (req, res) {
-  const { title, description, ingridients, userId } = req.body;
+  const { title, description, ingredients, userId } = req.body;
   console.log(req.body)
 
   const newRecipie = new Recipie({
     title,
     description,
-    ingridients,
+    ingredients,
     userId
   })
   const savedRecipie = await newRecipie.save();

@@ -18,6 +18,8 @@ export interface AuthContextType {
 export type Recipie = {
   title: string
   description: string
-  ingridients: string
+  ingredients: string
   userId: string
+  _id: string
+  image: []
 }

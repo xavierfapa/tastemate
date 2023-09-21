@@ -11,16 +11,16 @@ function LoginPage() {
 
   const onSubmit = handleSubmit(async (user: userLoged) => {
     await signin(user);
-    navigate('/recipies');
+    navigate('/initial');
   });
 
   return (
     <div className="login-page-container" >
       <div className="login-page">
-        <form onSubmit={onSubmit}>
-          <input type="email" {...register("email", { required: true })} placeholder='Email' />
-          <input type="password" {...register("password", { required: true })} placeholder='Password' />
-          <button type="submit" >Login</button>
+        <form onSubmit={onSubmit} className='register-form'>
+          <input className='register-input' type="email" {...register("email", { required: true })} placeholder='Email' />
+          <input className='register-input' type="password" {...register("password", { required: true })} placeholder='Password' />
+          <button className='register-button' type="submit" >Login</button>
         </form>
           <p className='swap-to'>Don't have an account? <Link to="/register" className='swap-to-link'>Register</Link></p>
       </div>

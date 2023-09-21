@@ -1,0 +1,26 @@
+.Profile {
+  /* padding: 20px; */
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  & .profile-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid gray;
+    padding-inline: 20px;
+    padding-bottom: 10px;
+    & .user-img {
+      border-radius: 50%;
+      background-color: beige;
+      width: 60px;
+      height: 60px;
+    }
+  }
+  & h3 {
+    padding-inline: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-bottom: 1px solid gray;
+  }
+}

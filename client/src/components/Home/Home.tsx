@@ -1,13 +1,12 @@
 import './Home.css'
-import logo from '../../assets/my-logo2.png'
+import logo from '../../assets/logo-orange.png'
 import { Link } from 'react-router-dom';
-import Footer from '../Footer/Footer';
 
 function Home() {
   return (
     <div className='Home'>
-      <div className="header">
-        <h2>Tastemate</h2>
+      <div className="home-header">
+        <h2 className='home-h2'>Tastemate</h2>
         <img src={logo}/>
       </div>
       <div className="session">
@@ -15,7 +14,6 @@ function Home() {
         <button><Link to="/register">Register</Link></button>
         <p>Already have an account? <Link to="/login" className='link'>Login</Link></p>
       </div>
-      <Footer />
     </div>
   )
 }
