@@ -9,6 +9,7 @@ import HomePage from './pages/HomePage'
 import InitialPage from './pages/InitialPage';
 import ProfilePage from './pages/ProfilePage';
 import UserRecipiesPage from './pages/UserRecipiesPage';
+import UniqueRecipiePage from './pages/UniqueRecipiePage';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/recipies-form" element={<RecipiesFormPage />} />
           <Route path="/user-recipies" element={<UserRecipiesPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/unique-recipie/:recipieId" element={<UniqueRecipiePage />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

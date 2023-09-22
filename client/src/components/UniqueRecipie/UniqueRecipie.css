@@ -1,0 +1,43 @@
+.UniqueRecipie{
+  position: relative;
+  & .unique-recipie-header {
+    position: absolute;
+    padding-inline: 20px;
+    top: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    & img {
+      width: 20px;
+    }
+    & .trash-edit {
+      display: flex;
+      gap: 10px;
+    }
+  }
+}
+
+.recipie-data {
+  & .recipie-images {
+    & img {
+      height: 50vh;
+    }
+  }
+  & .recipie-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+    padding-bottom: 15px;
+    padding-inline: 20px;
+    & h2 {
+      font-size: 20px;
+      font-weight: 600;
+    }
+    & .recipie-ingredients {
+      margin-top: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+}

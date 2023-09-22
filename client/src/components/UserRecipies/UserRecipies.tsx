@@ -4,11 +4,13 @@ import { useAuth } from '../../context/AuthContext';
 import { useState, useEffect } from 'react';
 import { getUserRecipies } from '../../services/apiRecipies';
 import { Recipie } from '../../Interfaces';
+import { useNavigate } from 'react-router-dom';
 
 function UserRecipies() {
   const [recipies, setRecipies] = useState<Recipie[]>([])
-
   const { user } = useAuth();
+
+  const navigate = useNavigate();
 
   const goBack = () => {
     window.history.back();
@@ -29,6 +31,12 @@ function UserRecipies() {
       });
   }
 
+  const handleClick = (recipieId) => {
+    console.log('cliked');
+    console.log(recipieId)
+    navigate(`/unique-recipie/${recipieId}`);
+  }
+
   return (
     <>
       <div className="user-recipies-header">
@@ -38,7 +46,7 @@ function UserRecipies() {
       <div className='UserRecipies'>
         {recipies.map(recipie => (
           <div key={recipie._id} className="recipie-container">
-            <img src={recipie.images[0]} />
+            <img src={recipie.images[0]} onClick={() => handleClick(recipie._id)} />
             <p>{recipie.title}</p>
             {/* <p>{recipie.description}</p>
             <p>{recipie.ingredients}</p> */}

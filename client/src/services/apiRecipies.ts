@@ -43,3 +43,13 @@ export async function postImage (image: any) {
     console.log(error);
   }
 }
+
+export async function getUniqueRecipie (recipieId: string) {
+  try {
+    const response = await fetch(`${BASE_URL}/recipie/${recipieId}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}

@@ -22,8 +22,9 @@
     margin-bottom: 10px;
     & img {
       width: 43vw;
+      aspect-ratio: 1/1;
       border-radius: 15px;
-      background-color: blue;
+      /* border: 1px solid rgba(128, 128, 128, 0.2); */
     }
     & p {
       padding-left: 10px;
