@@ -6,6 +6,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 function RecipieSlider({ recipie }) {
+  
+  const customPaging = (i) => {
+    return <div className="custom-dot" key={i}></div>;
+  };
 
   const initialSliderSettings = {
     infinite: false,
@@ -14,19 +18,24 @@ function RecipieSlider({ recipie }) {
     autoplay: false,
     arrows: true,
     dots: true,
+    customPaging: customPaging,
   };
 
   return (
     <div className='RecipieSlider'>
-      <Slider {...initialSliderSettings}>
-        {recipie.images
-        .filter(image => image.length > 0)
-        .map((image, index) => (
-          <div key={index}>
-            <img src={image} alt="" />
-          </div>
-        ))}
-      </Slider>
+      <div className="Recipie-image-container">
+        <Slider {...initialSliderSettings}>
+          {recipie.images
+          .filter(image => image.length > 0)
+          .map((image, index) => (
+            <div className="image-container" key={index}>
+              <img className='slider-image' src={image} alt="" />
+            </div>
+          ))}
+        </Slider>
+        <div className="slider-options">
+      </div>
+      </div>
     </div>
   )
 }

@@ -1,4 +1,8 @@
 import './Initial.css';
+import cross from '../../assets/cross.png';
+import before from '../../assets/before.png';
+import heart from '../../assets/heart.png';
+
 import { useState, useEffect } from 'react';
 import { getOtherRecipies } from '../../services/apiRecipies';
 import { useAuth } from '../../context/AuthContext';
@@ -31,9 +35,22 @@ function Initial() {
 
   return (
     <div className="Initial">
-      {/* <h3 onClick={handleClick} >Caca</h3> */}
-      {/* <RecipieSlider recipie={otherRecipies[currentRecipieIndex]} /> */}
-      <button onClick={showNextRecipie}>Next Recipe</button>
+      <div className="initial-container">
+        {/* <h3 onClick={handleClick} >Caca</h3> */}
+        {otherRecipies && otherRecipies.length > 0 ? (
+        <>
+          <RecipieSlider recipie={otherRecipies[currentRecipieIndex]} />
+          <button className='next-button' onClick={showNextRecipie}>Next Recipe</button>
+        </>
+      ) : (
+        <p>No recipes available.</p>
+      )}
+      </div>
+      <div className="initial-icons">
+          <img src={before} alt="" />
+          <img src={cross} alt="" />
+          <img src={heart} alt="" />
+      </div>
     </div>
   )
 }

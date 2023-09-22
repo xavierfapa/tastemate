@@ -1,0 +1,32 @@
+.RecipieSlider {
+  overflow-x: hidden;
+  position: relative;
+  & .Recipie-image-container {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    & .image-container {
+      height: 50vh;
+      & .slider-image {
+        height: 100%;
+      }
+    }
+  }
+}
+
+.slick-dots {
+  height: fit-content;
+  background-color: #fff;
+  padding: 10px; 
+  border-radius: 5px;
+}
+
+.custom-dot {
+  height: 4px;
+  background-color: blue;
+  /* width: 100%; */
+  border-radius: 3px;
+}
+
+.custom-dot.slick-active {
+  background-color: red;
+}
