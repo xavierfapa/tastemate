@@ -7,15 +7,19 @@ import { useParams } from 'react-router-dom';
 import { getUniqueRecipie } from '../../services/apiRecipies';
 import { useEffect, useState } from 'react';
 import { Recipie } from '../../Interfaces';
+import { useNavigate } from 'react-router-dom';
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { deleteRecipieDB } from '../../services/apiRecipies';
 
 function UniqueRecipie() {
   const { recipieId } = useParams();
 
   const [recipieData, setRecipieData] =  useState<Recipie | null>(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (recipieId) {
@@ -33,7 +37,13 @@ function UniqueRecipie() {
   }
 
   const goBack = () => {
-    window.history.back();
+    navigate('/user-recipies');
+  }
+
+  const handleDelete = (recipieId: any) => {
+    console.log('trying to delete');
+    deleteRecipieDB(recipieId);
+    navigate('/user-recipies');
   }
 
   const sliderSettings = {
@@ -52,7 +62,7 @@ function UniqueRecipie() {
           <img onClick={goBack} src={goBackIcon} className='goBack-Recipies' />
         </div>
         <div className='trash-edit'>
-          <img src={deleteRecipie} alt="" />
+          <img onClick={() => handleDelete(recipieId)} src={deleteRecipie} alt="" />
           <img src={editRecipie} alt="" />
         </div>
       </div>

@@ -13,7 +13,7 @@ function UserRecipies() {
   const navigate = useNavigate();
 
   const goBack = () => {
-    window.history.back();
+    navigate('/profile')
   }
 
   useEffect(() => { 
@@ -31,7 +31,7 @@ function UserRecipies() {
       });
   }
 
-  const handleClick = (recipieId) => {
+  const handleClick = (recipieId: string) => {
     console.log('cliked');
     console.log(recipieId)
     navigate(`/unique-recipie/${recipieId}`);

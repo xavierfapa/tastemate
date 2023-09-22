@@ -53,3 +53,15 @@ export async function getUniqueRecipie (recipieId: string) {
     console.log(error);
   }
 }
+
+export async function deleteRecipieDB (recipieId: string) {
+  try {
+    const response = await fetch(`${BASE_URL}/recipies/${recipieId}`, {
+      method: "DELETE"
+    })
+    if (response.ok) return true;
+    return false;
+  } catch (error) {
+    console.log(error);
+  }
+}

@@ -103,6 +103,9 @@ function RecipieForm() {
               <label className="photo-label" htmlFor={`imageInput${index}`}>
                 <img className="upload-photo" src={imageUrl || photo} alt={`Image ${index + 1}`} />
               </label>
+              {/* <label className="photo-label" htmlFor={`imageInput${index}`}>
+                <img className="upload-photo" src={imageUrl || photo} alt={`Image ${index + 1}`} />
+              </label> */}
               <input {...register("images")} id={`imageInput${index}`} className='image-form-input' type="file" accept="image/*" onChange={handleImageChange(index)} />
             </div>
           ))}

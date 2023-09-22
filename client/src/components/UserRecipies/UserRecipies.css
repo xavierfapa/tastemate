@@ -28,6 +28,10 @@
     & p {
       padding-left: 10px;
       padding-top: 5px;
+      max-width: 41vw;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 }

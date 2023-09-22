@@ -52,6 +52,11 @@
               width: 30px;
               height: auto;
             }
+            & .upload-photo-active {
+              width: 100%;
+              height: 100%;
+              border-radius: 15px;
+            }
           }
           & .image-form-input{
             display: none;
