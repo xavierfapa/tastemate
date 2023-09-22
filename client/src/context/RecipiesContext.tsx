@@ -1,5 +1,4 @@
 import { createContext, useState, useContext, ReactNode } from "react";
-// import { registerUser, loginUser } from "../services/apiAuth";
 import { Recipie } from "../Interfaces";
 
 export const RecipiesContext = createContext({});
@@ -13,11 +12,10 @@ export const useRecipies = () => {
 };
 
 const RecipiesProvidier = ({ children }: { children: ReactNode }) => {
-  const [recipies, setRecipies] = useState<Recipie[]>([])
-
+  const [otherRecipies, setOtherRecipies] = useState<Recipie[]>([])
 
   return (
-    <RecipiesContext.Provider value={{}}>
+    <RecipiesContext.Provider value={{otherRecipies, setOtherRecipies}}>
       {children}
     </RecipiesContext.Provider>
   )

@@ -65,3 +65,13 @@ export async function deleteRecipieDB (recipieId: string) {
     console.log(error);
   }
 }
+
+export async function getOtherRecipies(userId: string) {
+  try {
+    const response = await fetch(`${BASE_URL}/recipiesOther?userId=${userId}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}

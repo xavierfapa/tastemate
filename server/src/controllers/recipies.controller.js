@@ -16,7 +16,8 @@ export async function createRecipie (req, res) {
 }
 
 export async function getOthersRecipies (req, res) {
-  const { userId } = req.body;
+  // const { userId } = req.body;
+  const { userId } = req.query;
   const recipies = await Recipie.find({
     userId: { $ne: userId }
   }).exec();
