@@ -48,8 +48,6 @@ function UserRecipies() {
           <div key={recipie._id} className="recipie-container">
             <img src={recipie.images[0]} onClick={() => handleClick(recipie._id)} />
             <p>{recipie.title}</p>
-            {/* <p>{recipie.description}</p>
-            <p>{recipie.ingredients}</p> */}
           </div>
         ))}
       </div>

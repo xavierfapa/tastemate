@@ -8,6 +8,10 @@ import { getUniqueRecipie } from '../../services/apiRecipies';
 import { useEffect, useState } from 'react';
 import { Recipie } from '../../Interfaces';
 
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 function UniqueRecipie() {
   const { recipieId } = useParams();
 
@@ -32,6 +36,15 @@ function UniqueRecipie() {
     window.history.back();
   }
 
+  const sliderSettings = {
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: false,
+    arrows: true,
+    dots: true,
+  };
+
   return (
     <div className='UniqueRecipie'>
       <div className="unique-recipie-header">
@@ -45,14 +58,17 @@ function UniqueRecipie() {
       </div>
       {recipieData && (
         <div className='recipie-data'>
-          {/* <div className="recipie-images">
-            <img src={recipieData.images[1]} alt="" />
-          </div> */}
-          <div className="recipie-images">
-            {recipieData.images.map((image, index) => (
-              image.length > 0 ? <img key={index} src={image} alt="" /> : ''
-            ))}
-          </div>
+           <div className="recipie-images">
+              <Slider {...sliderSettings}>
+                {recipieData.images
+                  .filter(image => image.length > 0)
+                  .map((image, index) => (
+                    <div key={index}>
+                      <img src={image} alt="" />
+                    </div>
+                  ))}
+              </Slider>
+            </div>
           <div className="recipie-info">
             <h2>{recipieData.title}</h2>
             <p>{recipieData.description}</p>

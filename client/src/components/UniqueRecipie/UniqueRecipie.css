@@ -1,5 +1,6 @@
 .UniqueRecipie{
   position: relative;
+  overflow-x: hidden;
   & .unique-recipie-header {
     position: absolute;
     padding-inline: 20px;
@@ -7,6 +8,7 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    z-index: 1;
     & img {
       width: 20px;
     }
@@ -40,4 +42,9 @@
       font-weight: 600;
     }
   }
+}
+
+.slick-dots {
+  position: absolute;
+  top: calc(45vh);
 }

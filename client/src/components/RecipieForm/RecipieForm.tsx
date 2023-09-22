@@ -1,15 +1,18 @@
 import './RecipieForm.css';
-import goBackIcon from '../../assets/next.svg'
+import goBackIcon from '../../assets/close.png'
 import { Recipie } from '../../Interfaces';
 import { useForm } from 'react-hook-form';
 import { postRecipie, postImage } from '../../services/apiRecipies';
 import { useAuth } from '../../context/AuthContext';
 import photo from '../../assets/camera.svg';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function RecipieForm() {
   const { register, handleSubmit } = useForm<Recipie>();
   const { user } = useAuth();
+
+  const navigate = useNavigate();
 
   const [imageUrls, setImageUrls] = useState<string[]>(Array(10).fill(''));
 
@@ -40,6 +43,7 @@ function RecipieForm() {
     );
     recipie.images = uploadedImageUrls;
     await postRecipie(recipie);
+    navigate('/initial');
   });
 
   const convertBase64 = (file: any) => {
