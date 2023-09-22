@@ -100,12 +100,9 @@ function RecipieForm() {
           <div className="images-form">
           {imageUrls.map((imageUrl, index) => (
             <div className="input-label" key={index}>
-              <label className="photo-label" htmlFor={`imageInput${index}`}>
-                <img className="upload-photo" src={imageUrl || photo} alt={`Image ${index + 1}`} />
+              <label className={`photo-label ${imageUrl ? "photo-label-active" : ""}`} htmlFor={`imageInput${index}`}>
+                <img className={`${imageUrl ? "upload-photo-active" : "upload-photo"}`} src={imageUrl || photo} alt={`Image ${index + 1}`} />
               </label>
-              {/* <label className="photo-label" htmlFor={`imageInput${index}`}>
-                <img className="upload-photo" src={imageUrl || photo} alt={`Image ${index + 1}`} />
-              </label> */}
               <input {...register("images")} id={`imageInput${index}`} className='image-form-input' type="file" accept="image/*" onChange={handleImageChange(index)} />
             </div>
           ))}
