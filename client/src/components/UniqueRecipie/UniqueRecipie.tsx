@@ -3,16 +3,17 @@ import goBackIcon from '../../assets/back-white4.png';
 // import goBackIcon from '../../assets/back-page-white.svg';
 import deleteRecipie from '../../assets/delete-white3.png';
 import editRecipie from '../../assets/edit-white2.png';
+
+import { Recipie } from '../../Interfaces';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getUniqueRecipie } from '../../services/apiRecipies';
-import { useEffect, useState } from 'react';
-import { Recipie } from '../../Interfaces';
+import { deleteRecipieDB } from '../../services/apiRecipies';
 import { useNavigate } from 'react-router-dom';
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { deleteRecipieDB } from '../../services/apiRecipies';
 
 function UniqueRecipie() {
   const { recipieId } = useParams();

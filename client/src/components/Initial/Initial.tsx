@@ -3,13 +3,17 @@ import { useState, useEffect } from 'react';
 import { getOtherRecipies } from '../../services/apiRecipies';
 import { useAuth } from '../../context/AuthContext';
 import { useRecipies } from '../../context/RecipiesContext';
+import RecipieSlider from '../RecipieSlider/RecipieSlider';
 
 function Initial() {
-
   const { user } = useAuth();
   const { otherRecipies, setOtherRecipies } = useRecipies();
 
-  const handleClick = () => console.log(user);
+  const [currentRecipieIndex, setCurrentRecipieIndex] = useState(0);
+
+  const showNextRecipie = () => {
+    setCurrentRecipieIndex((prevIndex) => prevIndex + 1);
+  };
 
   useEffect(() => {
     getOtherRecipies(user.id)
@@ -21,18 +25,16 @@ function Initial() {
       });
   }, [setOtherRecipies]);
 
+  // const handleClick = () => {
+  //   console.log(otherRecipies)
+  // }
+
   return (
-    // <div className='Initial'>
-    //   <h1 onClick={handleClick}>Initial</h1>
-    // </div>
-    <div>
-    <h1>Recetas</h1>
-    <ul>
-      {otherRecipies.map((receta, index) => (
-        <li key={index}>{receta.title}</li>
-      ))}
-    </ul>
-  </div>
+    <div className="Initial">
+      {/* <h3 onClick={handleClick} >Caca</h3> */}
+      {/* <RecipieSlider recipie={otherRecipies[currentRecipieIndex]} /> */}
+      <button onClick={showNextRecipie}>Next Recipe</button>
+    </div>
   )
 }
 
