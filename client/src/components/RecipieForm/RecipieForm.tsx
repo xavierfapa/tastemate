@@ -1,15 +1,16 @@
 import './RecipieForm.css';
 import goBackIcon from '../../assets/close.png'
+// import photo from '../../assets/camera.svg';
+import photo from '../../assets/camera1.png';
 import { Recipie } from '../../Interfaces';
 import { useForm } from 'react-hook-form';
 import { postRecipie, postImage } from '../../services/apiRecipies';
 import { useAuth } from '../../context/AuthContext';
-import photo from '../../assets/camera.svg';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function RecipieForm() {
-  const { register, handleSubmit } = useForm<Recipie>();
+  const { register, handleSubmit, formState: { errors }, trigger } = useForm<Recipie>();
   const { user } = useAuth();
 
   const navigate = useNavigate();
@@ -24,7 +25,23 @@ function RecipieForm() {
     window.history.back();
   }
 
+  const validateImages = () => {
+    const hasImage = imageUrls.some(imageUrl => !!imageUrl);
+    if (!hasImage) {
+      return 'At least one image is required.';
+    }
+    return true;
+  };
+
+  register('images', { validate: validateImages });
+
   const submitForm = handleSubmit(async (recipie: Recipie) => {
+    const isValid = await trigger();
+
+    if (!isValid) {
+      return;
+    }
+
     recipie.userId = user.id;
   
     const uploadedImageUrls = await Promise.all(
@@ -86,16 +103,17 @@ function RecipieForm() {
               <label className="photo-label" htmlFor={`imageInput${index}`}>
                 <img className="upload-photo" src={imageUrl || photo} alt={`Image ${index + 1}`} />
               </label>
-              <input id={`imageInput${index}`} className='image-form-input' type="file" accept="image/*" onChange={handleImageChange(index)} />
+              <input {...register("images")} id={`imageInput${index}`} className='image-form-input' type="file" accept="image/*" onChange={handleImageChange(index)} />
             </div>
           ))}
           </div>
+          {errors.images && <p className='image-error'>At least one image is required</p>}
           {titleInputValue && <p className='input-placeholder'>Title</p>}
-          <input className="recipie-input" type="text" {...register("title", { required: true })} placeholder='Title*' value={titleInputValue} onChange={(e) => setTitleInputValue(e.target.value)} />
+          <input className={`recipie-input ${errors.title && !titleInputValue ? 'invalid' : ''}`} type="text" {...register("title", { required: true })} placeholder='Title*' value={titleInputValue} onChange={(e) => setTitleInputValue(e.target.value)} />
           {descriptionInputValue && <p className='input-placeholder'>Description</p>}
-          <input className="recipie-input" type="text" {...register("description", { required: true })} placeholder='Description*' value={descriptionInputValue} onChange={(e) => setDescriptionInputValue(e.target.value)} />
+          <input className={`recipie-input ${errors.description && !descriptionInputValue ? 'invalid' : ''}`} type="text" {...register("description", { required: true })} placeholder='Description*' value={descriptionInputValue} onChange={(e) => setDescriptionInputValue(e.target.value)} />
           {ingredientsInputValue && <p className='input-placeholder'>Ingredients</p>}
-          <input className="recipie-input" type="text" {...register("ingredients", { required: true })} placeholder='Ingredients*' value={ingredientsInputValue} onChange={(e) => setIngredientsInputValue(e.target.value)} />
+          <input className={`recipie-input ${errors.ingredients && !ingredientsInputValue ? 'invalid' : ''}`} type="text" {...register("ingredients", { required: true })} placeholder='Ingredients*' value={ingredientsInputValue} onChange={(e) => setIngredientsInputValue(e.target.value)} />
           <div className="button-container">
             <button className='recipie-button' type="submit" >Upload recipie</button>
           </div>

@@ -1,8 +1,9 @@
 import './Footer.css';
-import profile from '../../assets/profile.png'
+// import profile from '../../assets/profile.png'
+import profile from '../../assets/profile1.png'
 import home from '../../assets/logo-orange.png';
 // import messages from '../../assets/chat3.png';
-import messages from '../../assets/chat4.png';
+import messages from '../../assets/chat6.png';
 // import subelo from '../../assets/add-recipie.svg';
 import subelo from '../../assets/add-recipie.png';
 import { Link } from 'react-router-dom';
