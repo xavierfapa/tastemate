@@ -1,18 +1,25 @@
 import './Footer.css';
-// import profile from '../../assets/profile.png'
 import profile from '../../assets/profile2.png'
 import profileOrange from '../../assets/profile-orange.png'
 import home from '../../assets/logo-grey.png';
 import homeOrange from '../../assets/logo-orange.png';
-// import messages from '../../assets/chat3.png';
 import messages from '../../assets/envelope2.png';
 import messagesOrange from '../../assets/envelope-orange.png';
-// import subelo from '../../assets/add-recipie.svg';
 import subelo from '../../assets/add-recipie2.png';
 import { Link, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
 
 function Footer() {
   const location = useLocation();
+  const [currentPage, setCurrentPage] = useState(location.pathname);
+
+  useEffect(() => {
+    if (location.pathname !== currentPage) {
+      setCurrentPage(location.pathname);
+    }
+  }, [location, currentPage]);
+
 
   const links = [
     {
@@ -41,14 +48,17 @@ function Footer() {
     <div className="Footer">
       {links.map((link, index) => (
         <Link to={link.to} key={index} className="footer-container">
-          <img className="footer-img" src={link.imgSrc} alt={link.text} />
+          <img
+            className={`footer-img ${link.to === currentPage ? 'active' : ''}`}
+            src={link.imgSrc}
+            alt={link.text}
+          />
           <p className={link.to === location.pathname ? 'active-link' : ''}>{link.text}</p>
         </Link>
       ))}
     </div>
   )
 }
-
 export default Footer
 
     // const homeSrc = location.pathname === '/initial' ? homeOrange : home;
