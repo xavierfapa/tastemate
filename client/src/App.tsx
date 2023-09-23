@@ -12,6 +12,7 @@ import ProfilePage from './pages/ProfilePage';
 import UserRecipiesPage from './pages/UserRecipiesPage';
 import UniqueRecipiePage from './pages/UniqueRecipiePage';
 import MessagesPage from './pages/MessagesPage';
+import MessagesChatPage from './pages/MessagesChat';
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/unique-recipie/:recipieId" element={<UniqueRecipiePage />} />
             <Route path="/messages" element={<MessagesPage />} />
+            <Route path="/messages-chat" element={<MessagesChatPage />} />
           </Routes>
         </BrowserRouter>
       </RecipiesProvidier>
