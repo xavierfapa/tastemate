@@ -48,3 +48,37 @@
   position: absolute;
   top: calc(45vh);
 }
+
+.custom-slider {
+  position: relative;
+}
+
+.slider-buttons {
+  position: absolute;
+  /* background-color: blue; */
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+  & .slide-button {
+    /* position: absolute; */
+    bottom: 10px;
+    background-color: black;
+    opacity: .25;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+  }
+}
+
+/* .something .slick-dots {
+  top: '';
+  display: flex '';
+  justify-content: '';
+}
+
+.something .slick-dots > * {
+  display: flex '';
+  justify-content: '';
+  width: '';
+} */

@@ -16,7 +16,7 @@ function RecipieSlider({ recipie }) {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: false,
-    arrows: true,
+    // arrows: true,
     dots: true,
     customPaging: customPaging,
   };
@@ -24,7 +24,7 @@ function RecipieSlider({ recipie }) {
   return (
     <div className='RecipieSlider'>
       <div className="Recipie-image-container">
-        <Slider {...initialSliderSettings}>
+        <Slider {...initialSliderSettings} className='home-slider' id="hey">
           {recipie.images
           .filter(image => image.length > 0)
           .map((image, index) => (
@@ -33,8 +33,12 @@ function RecipieSlider({ recipie }) {
             </div>
           ))}
         </Slider>
-        <div className="slider-options">
-      </div>
+        <div className="slider-recipie-content">
+            <h2>{recipie.title}</h2>
+            <h3>{recipie.description}</h3>
+            <h4>Ingredients</h4>
+            <p>{recipie.ingredients}</p>
+        </div>
       </div>
     </div>
   )

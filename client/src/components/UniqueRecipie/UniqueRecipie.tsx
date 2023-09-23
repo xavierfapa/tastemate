@@ -12,13 +12,16 @@ import { deleteRecipieDB } from '../../services/apiRecipies';
 import { useNavigate } from 'react-router-dom';
 
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
 
 function UniqueRecipie() {
   const { recipieId } = useParams();
 
   const [recipieData, setRecipieData] =  useState<Recipie | null>(null);
+
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const navigate = useNavigate();
 
@@ -56,6 +59,16 @@ function UniqueRecipie() {
     dots: true,
   };
 
+  const goToPreviousSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? (filteredImages.length || 0) - 1 : prevIndex - 1));
+  };
+
+  const goToNextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === (filteredImages.length || 0) - 1 ? 0 : prevIndex + 1));
+  };
+
+  const filteredImages = recipieData?.images.filter(image => image.length > 0) || [];
+  
   return (
     <div className='UniqueRecipie'>
       <div className="unique-recipie-header">
@@ -70,7 +83,7 @@ function UniqueRecipie() {
       {recipieData && (
         <div className='recipie-data'>
            <div className="recipie-images">
-              <Slider {...sliderSettings}>
+              <Slider {...sliderSettings} className="something">
                 {recipieData.images
                   .filter(image => image.length > 0)
                   .map((image, index) => (
@@ -79,7 +92,18 @@ function UniqueRecipie() {
                     </div>
                   ))}
               </Slider>
-            </div>
+          {/* <div className="custom-slider">
+              {filteredImages.length > 0 ? (
+                <img src={filteredImages[currentIndex]} alt="" />
+                ) : (
+                  <p>No hay imágenes disponibles.</p>
+                  )}
+                <div className="slider-buttons">
+                  <button className="slide-button" onClick={goToPreviousSlide}></button>
+                  <button className="slide-button" onClick={goToNextSlide}></button>
+                </div>
+            </div> */}
+          </div>
           <div className="recipie-info">
             <h2>{recipieData.title}</h2>
             <p>{recipieData.description}</p>

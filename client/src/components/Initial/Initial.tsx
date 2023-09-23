@@ -19,6 +19,10 @@ function Initial() {
     setCurrentRecipieIndex((prevIndex) => prevIndex + 1);
   };
 
+  const showPreviousRecipie = () => {
+    setCurrentRecipieIndex((prevIndex) => prevIndex - 1);
+  };
+
   useEffect(() => {
     getOtherRecipies(user.id)
       .then((data) => {
@@ -40,16 +44,22 @@ function Initial() {
         {otherRecipies && otherRecipies.length > 0 ? (
         <>
           <RecipieSlider recipie={otherRecipies[currentRecipieIndex]} />
-          <button className='next-button' onClick={showNextRecipie}>Next Recipe</button>
+          {/* <button className='next-button' onClick={showNextRecipie}>Next Recipe</button> */}
         </>
       ) : (
         <p>No recipes available.</p>
       )}
       </div>
-      <div className="initial-icons">
-          <img src={before} alt="" />
-          <img src={cross} alt="" />
+      <div className="initial-icons-container">
+        <div className="initial-icons initial-icons-before">
+          <img onClick={showPreviousRecipie} src={before} alt="" />
+        </div>
+        <div className="initial-icons initial-icons-cross">
+          <img onClick={showNextRecipie} src={cross} alt="" />
+        </div>
+        <div className="initial-icons initial-icons-heart">
           <img src={heart} alt="" />
+        </div>
       </div>
     </div>
   )

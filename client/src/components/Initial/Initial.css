@@ -1,7 +1,9 @@
 .Initial {
   position: relative;
   width: 100%;
+  /* background-color: blue; */
   & .initial-container {
+    position: relative;
   }
 }
 
@@ -12,17 +14,30 @@
   height: 50px;
 }
 
-.initial-icons {
+.initial-icons-container {
   position: absolute;
+  /* background-color: blue; */
   display: flex;
   gap: 40px;
+  top: calc(43vh);
   left: 50%;
   transform: translateX(-50%);
-  & img {
-    /* border-radius: 50%;
-    padding: 5px;
-    border: 1px solid grey; */
-    width: 30px;
-    aspect-ratio: 1/1;
+  & .initial-icons-before {
+    border: 1.5px solid #ffdf6f;
+  }
+  & .initial-icons-cross {
+    border: 1.5px solid #dd8396;
+  }
+  & .initial-icons-heart {
+    border: 1.5px solid #42e3c0;
+  }
+  & .initial-icons {
+    background-color: rgba(222, 222, 222, 0.2);
+    padding: 7px;
+    border-radius: 50%;
+    & img {
+      width: 25px;
+      aspect-ratio: 1/1;
+    }
   }
 }
