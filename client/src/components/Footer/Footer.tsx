@@ -1,23 +1,76 @@
 import './Footer.css';
 // import profile from '../../assets/profile.png'
-import profile from '../../assets/profile1.png'
-import home from '../../assets/logo-orange.png';
+import profile from '../../assets/profile2.png'
+import profileOrange from '../../assets/profile-orange.png'
+import home from '../../assets/logo-grey.png';
+import homeOrange from '../../assets/logo-orange.png';
 // import messages from '../../assets/chat3.png';
-import messages from '../../assets/chat6.png';
+import messages from '../../assets/envelope2.png';
+import messagesOrange from '../../assets/envelope-orange.png';
 // import subelo from '../../assets/add-recipie.svg';
-import subelo from '../../assets/add-recipie.png';
-import { Link } from 'react-router-dom';
+import subelo from '../../assets/add-recipie2.png';
+import { Link, useLocation } from 'react-router-dom';
 
 function Footer() {
+  const location = useLocation();
+
+  const links = [
+    {
+      to: '/initial',
+      imgSrc: location.pathname === '/initial' ? homeOrange : home,
+      text: 'Home',
+    },
+    {
+      to: '/recipies-form',
+      imgSrc: subelo,
+      text: 'Upload',
+    },
+    {
+      to: '/messages',
+      imgSrc: location.pathname === '/messages' ? messagesOrange : messages,
+      text: 'Mailbox',
+    },
+    {
+      to: '/profile',
+      imgSrc: location.pathname === '/profile' ? profileOrange : profile,
+      text: 'You',
+    },
+  ];
+
   return (
-    <div className='Footer'>
-      <Link to="/initial"><img className="footer-img" src={home} alt="Inicio" /></Link>
-      <Link to="/recipies-form"><img className="footer-img" src={subelo} alt="Subir" /></Link>
-      {/* <Link to="/ruta-de-mensajes"><img className="footer-img" src={messages} alt="Mensajes" /></Link> */}
-      <img className="footer-img" src={messages} alt="" />
-      <Link to="/profile"><img className="footer-img" src={profile} alt="profile" /></Link>
+    <div className="Footer">
+      {links.map((link, index) => (
+        <Link to={link.to} key={index} className="footer-container">
+          <img className="footer-img" src={link.imgSrc} alt={link.text} />
+          <p className={link.to === location.pathname ? 'active-link' : ''}>{link.text}</p>
+        </Link>
+      ))}
     </div>
   )
 }
 
 export default Footer
+
+    // const homeSrc = location.pathname === '/initial' ? homeOrange : home;
+    // const profileSrc = location.pathname === '/profile' ? profileOrange : profile;
+    // const messagesSrc = location.pathname === '/messages' ? messagesOrange : messages;
+
+
+    // <div className="Footer">
+    //   <Link to="/initial" className='footer-container'>
+    //     <img className="footer-img" src={homeSrc} alt="Inicio" />
+    //     <p>Home</p>
+    //   </Link>
+    //   <Link to="/recipies-form" className='footer-container'>
+    //     <img className="footer-img" src={subelo} alt="Subir" />
+    //     <p>Upload</p>
+    //   </Link>
+    //   <Link to="/messages" className='footer-container'>
+    //     <img className="footer-img" src={messagesSrc} alt="Mensajes" />
+    //     <p>Mailbox</p>
+    //   </Link>
+    //   <Link to="/profile" className='footer-container'>
+    //     <img className="footer-img" src={profileSrc} alt="profile" />
+    //     <p>You</p>
+    //   </Link>
+    // </div>

@@ -1,4 +1,4 @@
-import Login from '../components/Register-Login/Login'
+import Login from '../components/Register-Login/Login';
 
 function LoginPage() {
   return (

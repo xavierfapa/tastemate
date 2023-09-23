@@ -1,5 +1,4 @@
 .Profile {
-  /* padding: 20px; */
   padding-top: 20px;
   display: flex;
   flex-direction: column;
@@ -9,18 +8,46 @@
     gap: 10px;
     border-bottom: 1px solid gray;
     padding-inline: 20px;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     & .user-img {
       border-radius: 50%;
       background-color: beige;
       width: 60px;
       height: 60px;
     }
+    & p {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+  & .profile-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    /* background-color: rgb(181, 181, 211); */
+    /* padding: 5px; */
+    & .profile-content-container {
+      /* background-color: aqua; */
+      display: flex;
+      padding: 7px 20px;
+      border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+      align-items: center;
+      justify-content: space-between;
+      & img {
+        width: 25px;
+      }
+      & .profile-content {
+        /* background-color: bisque; */
+        display: flex;
+        align-items: center;
+      }
+      & .right-arrow {
+        width: 13px;
+      }
+    }
   }
   & h3 {
     padding-inline: 20px;
     padding-bottom: 10px;
     padding-top: 10px;
-    border-bottom: 1px solid gray;
   }
 }
