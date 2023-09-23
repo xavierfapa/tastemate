@@ -23,3 +23,14 @@ export type Recipie = {
   _id: string
   images: string[]
 }
+
+export type Match = {
+  user1: string
+  user2: string
+};
+// export type Match = {
+//   user1: string
+//   user2: string
+//   matchedAt: Date
+//   _id: string
+// };

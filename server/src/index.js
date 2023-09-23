@@ -3,6 +3,7 @@ import cors from 'cors';
 
 import authRoutes from './routes/auth.routes.js';
 import recipiesRoutes from './routes/recipies.routes.js';
+import matchesRoutes from './routes/matches.routes.js';
 
 import { connectDB } from './db.js';
 
@@ -13,6 +14,7 @@ app.use(express.json({ limit: '500kb' }));
 
 app.use('/api', authRoutes);
 app.use('/api', recipiesRoutes);
+app.use('/api', matchesRoutes);
 
 connectDB();
 app.listen(3000)

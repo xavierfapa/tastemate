@@ -5,6 +5,7 @@ import heart from '../../assets/heart.png';
 
 import { useState, useEffect } from 'react';
 import { getOtherRecipies } from '../../services/apiRecipies';
+import { postMatch, checkIfMatchExists } from '../../services/apiMatches';
 import { useAuth } from '../../context/AuthContext';
 import { useRecipies } from '../../context/RecipiesContext';
 import RecipieSlider from '../RecipieSlider/RecipieSlider';
@@ -33,18 +34,30 @@ function Initial() {
       });
   }, [setOtherRecipies]);
 
-  // const handleClick = () => {
-  //   console.log(otherRecipies)
-  // }
+  const handleMatch = () => {
+    const user1 = otherRecipies[currentRecipieIndex].userId;
+    const user2 = user.id;
+    console.log(user1, user2)
+    checkIfMatchExists(user1, user2).then(match => {
+      if (match) {
+        console.log('Match already exists');
+      } else {
+        postMatch({ user1, user2 }).then(data => {
+          console.log(data);
+          showNextRecipie();
+        });
+      }
+    });
+    // console.log(user)
+    // console.log(otherRecipies[currentRecipieIndex])
+  }
 
   return (
     <div className="Initial">
       <div className="initial-container">
-        {/* <h3 onClick={handleClick} >Caca</h3> */}
         {otherRecipies && otherRecipies.length > 0 ? (
         <>
           <RecipieSlider recipie={otherRecipies[currentRecipieIndex]} />
-          {/* <button className='next-button' onClick={showNextRecipie}>Next Recipe</button> */}
         </>
       ) : (
         <p>No recipes available.</p>
@@ -58,7 +71,7 @@ function Initial() {
           <img onClick={showNextRecipie} src={cross} alt="" />
         </div>
         <div className="initial-icons initial-icons-heart">
-          <img src={heart} alt="" />
+          <img onClick={handleMatch} src={heart} alt="" />
         </div>
       </div>
     </div>
