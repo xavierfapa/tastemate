@@ -30,12 +30,34 @@ export async function getUserMatches (userId: string) {
 
 export async function checkIfMatchExists(user1: string, user2: string) {
   try {
-    const response = await fetch(`${BASE_URL}checkmatch/check?user1=${user1}&user2=${user2}`);
-    // const response = await fetch(`${BASE_URL}/recipiesOther?userId=${userId}`);
+    const response = await fetch(`${BASE_URL}/checkmatch/?user1=${user1}&user2=${user2}`);
     const data = await response.json();
     return data.matchExists;
   } catch (error) {
     console.log(error);
     return false;
+  }
+}
+
+
+export async function updateMatch(user1: string, user2: string) {
+  try {
+    const response = await fetch(`${BASE_URL}/matches/updateMatch`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ user1, user2 }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      throw new Error('Failed to update mutualMatch');
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
   }
 }

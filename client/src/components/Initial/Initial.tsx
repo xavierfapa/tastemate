@@ -5,7 +5,7 @@ import heart from '../../assets/heart.png';
 
 import { useState, useEffect } from 'react';
 import { getOtherRecipies } from '../../services/apiRecipies';
-import { postMatch, checkIfMatchExists } from '../../services/apiMatches';
+import { postMatch, checkIfMatchExists, updateMatch } from '../../services/apiMatches';
 import { useAuth } from '../../context/AuthContext';
 import { useRecipies } from '../../context/RecipiesContext';
 import RecipieSlider from '../RecipieSlider/RecipieSlider';
@@ -35,11 +35,17 @@ function Initial() {
   }, [setOtherRecipies]);
 
   const handleMatch = () => {
+    // console.log(user)
+    // console.log(otherRecipies[currentRecipieIndex])
     const user1 = otherRecipies[currentRecipieIndex].userId;
     const user2 = user.id;
     console.log(user1, user2)
     checkIfMatchExists(user1, user2).then(match => {
       if (match) {
+        updateMatch(user1, user2).then(updatedMatch => {
+          console.log('Match updated:', updatedMatch);
+          showNextRecipie();
+        });
         console.log('Match already exists');
       } else {
         postMatch({ user1, user2 }).then(data => {
@@ -48,8 +54,6 @@ function Initial() {
         });
       }
     });
-    // console.log(user)
-    // console.log(otherRecipies[currentRecipieIndex])
   }
 
   return (

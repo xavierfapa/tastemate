@@ -21,10 +21,9 @@ export async function postMatch (req, res) {
     res.status(201).json(savedMatch);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error al crear el match.' });
+    res.status(500).json({ message: 'Error creating the match' });
   }
 }
-
 
 export async function getMatches (req, res) {
   try {
@@ -37,7 +36,6 @@ export async function getMatches (req, res) {
     res.status(500).json({ message: 'Error al obtener los matches' });
   }
 };
-
 
 export async function checkIfMatchExists(req, res) {
   try {
@@ -60,3 +58,28 @@ export async function checkIfMatchExists(req, res) {
     res.status(500).json({ message: 'Verificaiton error.' });
   }
 }
+
+export const updateMatch = async (req, res) => {
+  try {
+    const { user1, user2 } = req.body;
+
+    const existingMatch = await Match.findOne({
+      $or: [
+        { user1, user2 },
+        { user1: user2, user2: user1 },
+      ],
+    });
+
+    if (!existingMatch) {
+      return res.status(404).json({ message: 'Match not found' });
+    }
+
+    existingMatch.mutualMatch = true;
+    await existingMatch.save();
+
+    return res.status(200).json(existingMatch);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to update mutualMatch' });
+  }
+};
