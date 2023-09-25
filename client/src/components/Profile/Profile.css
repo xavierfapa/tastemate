@@ -39,6 +39,11 @@
         /* background-color: bisque; */
         display: flex;
         align-items: center;
+        & .logout {
+          width: 20px;
+          margin-left: 3.5px;
+          margin-right: 3.5px;
+        }
       }
       & .right-arrow {
         width: 13px;

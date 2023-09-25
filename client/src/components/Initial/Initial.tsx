@@ -12,8 +12,9 @@ import RecipieSlider from '../RecipieSlider/RecipieSlider';
 
 function Initial() {
   const { user } = useAuth();
-  const { otherRecipies, setOtherRecipies } = useRecipies();
+  const { otherRecipies, setOtherRecipies } = useRecipies(null);
 
+  const [showMatch, setShowMatch] = useState(false);
   const [currentRecipieIndex, setCurrentRecipieIndex] = useState(0);
 
   const showNextRecipie = () => {
@@ -44,7 +45,11 @@ function Initial() {
       if (match) {
         updateMatch(user1, user2).then(updatedMatch => {
           console.log('Match updated:', updatedMatch);
+          setShowMatch(true);
           showNextRecipie();
+          setTimeout(() => {
+            setShowMatch(false);
+          }, 3000);
         });
         console.log('Match already exists');
       } else {
@@ -58,14 +63,18 @@ function Initial() {
 
   return (
     <div className="Initial">
+      {showMatch && (
+      <div className="its-a-match">
+        <p>IT'S A</p>
+        <h2>MATCH!</h2>
+      </div>
+      )}
       <div className="initial-container">
         {otherRecipies && otherRecipies.length > 0 ? (
         <>
           <RecipieSlider recipie={otherRecipies[currentRecipieIndex]} />
         </>
-      ) : (
-        <p>No recipes available.</p>
-      )}
+      ) : null}
       </div>
       <div className="initial-icons-container">
         <div className="initial-icons initial-icons-before">

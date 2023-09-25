@@ -13,19 +13,6 @@
   }
 }
 
-.no-recipies {
-  background-color: rgba(255, 123, 16, 0.7);
-  width: 100%;
-  height: 50vh;
-  display: grid;
-  place-items: center;
-  & p {
-    color: black;
-    font-weight: 500;
-    font-style: italic;
-  }
-}
-
 .slider-recipie-content {
   margin-top: 20px;
   padding-inline: 20px;

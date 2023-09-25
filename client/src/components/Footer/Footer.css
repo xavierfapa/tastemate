@@ -1,13 +1,14 @@
 .Footer {
   /* background-color: rgb(175, 175, 213); */
   height: 47px;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100vw;
   border-top: 1.5px solid rgba(158, 158, 158, 0.1);
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  background-color: white;
   & .footer-container {
     display: flex;
     flex-direction: column;

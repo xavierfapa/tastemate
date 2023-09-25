@@ -1,5 +1,7 @@
 import './MessagesChat.css';
-import goBackIcon from '../../assets/back-page.svg'
+import goBackIcon from '../../assets/back-page.svg';
+import deleteIcon from '../../assets/options.png';
+import sendIcon from '../../assets/send2.png';
 import { useNavigate } from 'react-router-dom';
 
 function MessagesChat() {
@@ -20,7 +22,20 @@ function MessagesChat() {
           <div className="user-name">Username</div>
           <p>Other info</p>
         </div>
-        <div className="delete">X</div>
+        <img className="delete" src={deleteIcon} alt="" />
+        {/* <div className="delete">{deleteIcon}</div> */}
+      </div>
+      <div className="chat-history">
+        <p className='user1'>Hola como estas</p>
+        <p className='user1'>Hola como estas Hola como estas Hola como estas Hola como estas Hola como estas Hola como estas</p>
+        <p className='user2'>Hola como estas Hola como estas Hola como estas Hola como estas Hola como estas Hola como estas</p>
+        <p className='user2'>Hola bien y tu?</p>
+      </div>
+      <div className="chat-footer">
+        <input type="text" placeholder='Type something' />
+        <div className="send-container">
+          <img className="send-button" src={sendIcon} alt="" />
+        </div>
       </div>
     </div>
   )
