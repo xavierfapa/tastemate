@@ -11,14 +11,14 @@ function MessagesHome() {
   const { user } = useAuth();
 
   const handleClick = () => {
-    console.log('clicked')
     navigate('/messages-chat');
   }
 
   useEffect(() => {
-    getUserMatches(user.id).then(data => {
-      console.log(data)
-      setMatches(data);
+    getUserMatches(user.id).then(matches => {
+      const filteredMatches = matches.filter(match => match.mutualMatch === true);
+      console.log(matches)
+      setMatches(filteredMatches);
     }).catch(error => console.log(error))
   }, [])
 
@@ -42,12 +42,3 @@ function MessagesHome() {
 }
 
 export default MessagesHome
-
-      {/* <div onClick={handleClick} className="chat-container">
-        <div className="chat-image"></div>
-        <div className="chat-container-content">
-          <h3>Username</h3>
-          <h4>Recipie Title</h4>
-          <p>Last message</p>
-        </div>
-      </div> */}

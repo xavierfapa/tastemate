@@ -3,6 +3,7 @@ import goBackIcon from '../../assets/back-page.svg';
 import deleteIcon from '../../assets/options.png';
 import sendIcon from '../../assets/send2.png';
 
+import { format } from 'date-fns';
 import { useState, useEffect } from 'react';
 import { Message } from '../../Interfaces';
 import { useForm } from 'react-hook-form';
@@ -17,20 +18,24 @@ function MessagesChat() {
   const { user } = useAuth();
   const { matches } = useMatch();
   const [chatHistory, setChatHistory] = useState<Message[]>([]);
+  const [messageText, setMessageText] = useState("");
 
   const goBack = () => {
     navigate('/messages');
   }
 
   useEffect(() => {
-    const senderUserId = user.id; 
+    const senderUserId = user.id;
+    
     const match = matches.find((m) => {
       return m.user1 === user.id || m.user2 === user.id;
     });
-  
+
     if (match) {
       const receiverUserId = user.id === match.user1 ? match.user2 : match.user1;
+      console.log('cocacola: ', senderUserId, receiverUserId);
       getConversation(senderUserId, receiverUserId).then(conversation => {
+        console.log(conversation);
         setChatHistory(conversation);
       });
     }
@@ -53,6 +58,8 @@ function MessagesChat() {
     };
 
     await postMessage(messageObject);
+    setChatHistory(prevState => [...prevState, messageObject]);
+    setMessageText('');
   });
 
   return (
@@ -68,17 +75,23 @@ function MessagesChat() {
         </div>
         <img className="delete" src={deleteIcon} alt="" />
       </div>
+
       <div className="chat-history">
-        {chatHistory.map((message, index) => (
-          <p key={index} className={message.senderId === user.id ? 'user1' : 'user2'}>{message.message}</p>
-        ))}
+        {chatHistory.map((message, index) => {
+          const createdAt = new Date(message.createdAt);
+          const formattedDate = format(createdAt, 'HH:mm');
+
+          return (
+            <div key={index} className={message.senderId === user.id ? 'user1-container' : 'user2-container'}>
+              <p className={message.senderId === user.id ? 'user1' : 'user2'}>{message.message}</p>
+              {/* <p className={message.senderId === user.id ? 'date1' : 'date2'}>{formattedDate}</p> */}
+            </div>
+          );
+        })}
       </div>
-      {/* <div className="chat-history">
-        <p className='user1'>Hola como estas</p>
-        <p className='user2'>Hola bien y tu?</p>
-      </div> */}
+
       <form onSubmit={submitMessage} className="chat-footer">
-        <input type="text" placeholder='Type something' {...register("message", { required: true })} />
+        <input value={messageText} type="text" placeholder='Type something' {...register("message", { required: true })} onChange={(e) => setMessageText(e.target.value)} />
         <button type='submit' className="send-container">
           <img className="send-button" src={sendIcon} alt="" />
         </button>
@@ -88,3 +101,13 @@ function MessagesChat() {
 }
 
 export default MessagesChat
+
+
+      {/* <div className="chat-history">
+        {chatHistory.map((message, index) => (
+          <div key={index} className={message.senderId === user.id ? 'user1-container' : 'user2-container'}>
+            <p className={message.senderId === user.id ? 'user1' : 'user2'}>{message.message}</p>
+            <p>{message.createdAt}</p>
+          </div>
+        ))}
+      </div> */}
