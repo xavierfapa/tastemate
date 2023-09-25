@@ -27,10 +27,20 @@ export type Recipie = {
 export type Match = {
   user1: string
   user2: string
+  mutualMatch: boolean
+  matchedAt: Date
 };
+
 // export type Match = {
 //   user1: string
 //   user2: string
 //   matchedAt: Date
 //   _id: string
 // };
+
+export type Message = {
+  message: string
+  senderId: string
+  receiverId: string
+  timestamp: number
+}

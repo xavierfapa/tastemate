@@ -81,7 +81,8 @@
       font-size: 15px;
     }
     &:focus {
-      color: var(--primary-color);
+      /* color: var(--primary-color); */
+      outline: none;
     }
   }
   .send-container {

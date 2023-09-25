@@ -33,6 +33,9 @@
   & > *:not(:first-child) {
     margin-top: 10px;
   }
+  & input:focus {
+    outline: none;
+  }
 }
 
 .swap-to {

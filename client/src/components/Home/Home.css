@@ -6,14 +6,16 @@
   padding: 20px;
   width: 100vw;
   height: 100vh;
+  /* background-color: var(--primary-color); */
   /* background-color: antiquewhite; */
   & .home-header{
     & .home-h2 {
       text-align: center;
+      /* -webkit-text-stroke: 1px white; */
       margin-top: 30px;
       margin-bottom: 20px;
       font-style: italic;
-      font-size: 20px;
+      font-size: 24px;
       font-weight: 700;
       color: var(--primary-color);
     }

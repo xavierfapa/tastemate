@@ -8,11 +8,13 @@ import { getOtherRecipies } from '../../services/apiRecipies';
 import { postMatch, checkIfMatchExists, updateMatch } from '../../services/apiMatches';
 import { useAuth } from '../../context/AuthContext';
 import { useRecipies } from '../../context/RecipiesContext';
+import { useMatch } from '../../context/MatchContext';
 import RecipieSlider from '../RecipieSlider/RecipieSlider';
 
 function Initial() {
   const { user } = useAuth();
   const { otherRecipies, setOtherRecipies } = useRecipies(null);
+  const { setMatches } = useMatch();
 
   const [showMatch, setShowMatch] = useState(false);
   const [currentRecipieIndex, setCurrentRecipieIndex] = useState(0);
@@ -36,15 +38,16 @@ function Initial() {
   }, [setOtherRecipies]);
 
   const handleMatch = () => {
-    // console.log(user)
-    // console.log(otherRecipies[currentRecipieIndex])
     const user1 = otherRecipies[currentRecipieIndex].userId;
     const user2 = user.id;
-    console.log(user1, user2)
+    // console.log(user1, user2)
     checkIfMatchExists(user1, user2).then(match => {
-      if (match) {
+      // console.log("caca", match)
+      if (match && match.user1 === user2) {
+        console.log(match);
+        setMatches(match);
         updateMatch(user1, user2).then(updatedMatch => {
-          console.log('Match updated:', updatedMatch);
+          // console.log('Match updated:', updatedMatch);
           setShowMatch(true);
           showNextRecipie();
           setTimeout(() => {

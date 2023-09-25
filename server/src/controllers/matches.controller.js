@@ -47,9 +47,11 @@ export async function checkIfMatchExists(req, res) {
         { user1: user2, user2: user1 },
       ],
     });
-
     if (existingMatch) {
-      return res.status(200).json({ matchExists: true });
+      console.log(existingMatch);
+      // return res.status(200).json({ matchExists: true });
+      return res.status(200).json(existingMatch)
+      // return res.status(200).json({ matchExists: true, matchInfo: existingMatch });
     }
 
     return res.status(200).json({ matchExists: false });

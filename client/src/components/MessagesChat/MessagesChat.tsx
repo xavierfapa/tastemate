@@ -2,14 +2,58 @@ import './MessagesChat.css';
 import goBackIcon from '../../assets/back-page.svg';
 import deleteIcon from '../../assets/options.png';
 import sendIcon from '../../assets/send2.png';
+
+import { useState, useEffect } from 'react';
+import { Message } from '../../Interfaces';
+import { useForm } from 'react-hook-form';
+import { postMessage, getConversation } from '../../services/apiMessages';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import { useMatch } from '../../context/MatchContext';
 
 function MessagesChat() {
   const navigate = useNavigate();
+  const { register, handleSubmit } = useForm<Message>();
+  const { user } = useAuth();
+  const { matches } = useMatch();
+  const [chatHistory, setChatHistory] = useState<Message[]>([]);
 
   const goBack = () => {
-    navigate('/messages')
+    navigate('/messages');
   }
+
+  useEffect(() => {
+    const senderUserId = user.id; 
+    const match = matches.find((m) => {
+      return m.user1 === user.id || m.user2 === user.id;
+    });
+  
+    if (match) {
+      const receiverUserId = user.id === match.user1 ? match.user2 : match.user1;
+      getConversation(senderUserId, receiverUserId).then(conversation => {
+        setChatHistory(conversation);
+      });
+    }
+  }, []);
+
+  const submitMessage = handleSubmit(async (message: Message) => {
+    const match = matches.find((m) => {
+      return m.user1 === user.id || m.user2 === user.id;
+    });
+
+    if (!match) {
+      return;
+    }
+
+    const messageObject = {
+      senderId: user.id,
+      receiverId: match.user1 === user.id ? match.user2 : match.user1,
+      message: message.message,
+      timestamp: Date.now()
+    };
+
+    await postMessage(messageObject);
+  });
 
   return (
     <div className='MessagesChat'>
@@ -23,20 +67,22 @@ function MessagesChat() {
           <p>Other info</p>
         </div>
         <img className="delete" src={deleteIcon} alt="" />
-        {/* <div className="delete">{deleteIcon}</div> */}
       </div>
       <div className="chat-history">
+        {chatHistory.map((message, index) => (
+          <p key={index} className={message.senderId === user.id ? 'user1' : 'user2'}>{message.message}</p>
+        ))}
+      </div>
+      {/* <div className="chat-history">
         <p className='user1'>Hola como estas</p>
-        <p className='user1'>Hola como estas Hola como estas Hola como estas Hola como estas Hola como estas Hola como estas</p>
-        <p className='user2'>Hola como estas Hola como estas Hola como estas Hola como estas Hola como estas Hola como estas</p>
         <p className='user2'>Hola bien y tu?</p>
-      </div>
-      <div className="chat-footer">
-        <input type="text" placeholder='Type something' />
-        <div className="send-container">
+      </div> */}
+      <form onSubmit={submitMessage} className="chat-footer">
+        <input type="text" placeholder='Type something' {...register("message", { required: true })} />
+        <button type='submit' className="send-container">
           <img className="send-button" src={sendIcon} alt="" />
-        </div>
-      </div>
+        </button>
+      </form>
     </div>
   )
 }
