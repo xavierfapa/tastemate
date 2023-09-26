@@ -5,13 +5,14 @@ import { getUserMatches } from '../../services/apiMatches';
 import { useMatch } from '../../context/MatchContext';
 import { useAuth } from '../../context/AuthContext';
 
+
 function MessagesHome() {
   const { matches, setMatches } = useMatch();
   const navigate = useNavigate();
   const { user } = useAuth();
 
-  const handleClick = () => {
-    navigate('/messages-chat');
+  const handleClick = (receiverId: string) => {
+    navigate(`/messages-chat/${receiverId}`);
   }
 
   useEffect(() => {
@@ -27,7 +28,7 @@ function MessagesHome() {
       {matches && matches.length > 0 && matches.map((match, i) => {
         const otherUser = match.user1 === user.id ? match.user2 : match.user1;
         return (
-          <div key={i} onClick={handleClick} className="chat-container">
+          <div key={i} onClick={() => handleClick(otherUser)} className="chat-container">
             <div className="chat-image"></div>
             <div className="chat-container-content">
               <h3>{otherUser}</h3>

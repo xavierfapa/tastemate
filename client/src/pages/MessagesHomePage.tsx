@@ -1,7 +1,7 @@
 import Messages from '../components/MessagesHome/MessagesHome';
 import Footer from '../components/Footer/Footer';
 
-function MessagesPage() {
+function MessagesHomePage() {
   return (
     <>
       <Messages />
@@ -10,4 +10,4 @@ function MessagesPage() {
   )
 }
 
-export default MessagesPage
+export default MessagesHomePage

@@ -11,6 +11,7 @@ import { postMessage, getConversation } from '../../services/apiMessages';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useMatch } from '../../context/MatchContext';
+import { useParams } from 'react-router-dom';
 
 function MessagesChat() {
   const navigate = useNavigate();
@@ -24,22 +25,19 @@ function MessagesChat() {
     navigate('/messages');
   }
 
+  const { receiverId } = useParams();
+
   useEffect(() => {
     const senderUserId = user.id;
-    
-    const match = matches.find((m) => {
-      return m.user1 === user.id || m.user2 === user.id;
+  
+    // Ahora puedes utilizar directamente receiverId en lugar de buscar en matches
+    console.log('cocacola: ', senderUserId, receiverId);
+    getConversation(senderUserId, receiverId).then(conversation => {
+      console.log(conversation);
+      setChatHistory(conversation);
     });
-
-    if (match) {
-      const receiverUserId = user.id === match.user1 ? match.user2 : match.user1;
-      console.log('cocacola: ', senderUserId, receiverUserId);
-      getConversation(senderUserId, receiverUserId).then(conversation => {
-        console.log(conversation);
-        setChatHistory(conversation);
-      });
-    }
-  }, []);
+  }, [receiverId]);
+  
 
   const submitMessage = handleSubmit(async (message: Message) => {
     const match = matches.find((m) => {
@@ -78,11 +76,12 @@ function MessagesChat() {
       
       <div className="chat-history">
         {chatHistory.map((message, index) => {
-          const createdAt = new Date(message.createdAt);
-          const formattedDate = format(createdAt, 'HH:mm');
+          // const createdAt = new Date(message.createdAt);
+          // const formattedDate = format(createdAt, 'HH:mm');
           return (
             <div key={index} className={message.senderId === user.id ? 'user1-container' : 'user2-container'}>
-              <p className={message.senderId === user.id ? 'user1' : 'user2'}>{message.message}<span className={message.senderId === user.id ? 'date1' : 'date2'}>{formattedDate}</span></p>
+              <p className={message.senderId === user.id ? 'user1' : 'user2'}>{message.message}</p>
+              {/* <p className={message.senderId === user.id ? 'user1' : 'user2'}>{message.message}<span className={message.senderId === user.id ? 'date1' : 'date2'}>{formattedDate}</span></p> */}
             </div>
           );
         })}
@@ -109,3 +108,22 @@ export default MessagesChat
           </div>
         ))}
       </div> */}
+
+        
+  // useEffect(() => {
+  //   const senderUserId = user.id;
+  //   const { receiverId } = useParams();
+    
+  //   const match = matches.find((m) => {
+  //     return m.user1 === user.id || m.user2 === user.id;
+  //   });
+
+  //   if (match) {
+  //     const receiverUserId = user.id === match.user1 ? match.user2 : match.user1;
+  //     console.log('cocacola: ', senderUserId, receiverUserId);
+  //     getConversation(senderUserId, receiverUserId).then(conversation => {
+  //       console.log(conversation);
+  //       setChatHistory(conversation);
+  //     });
+  //   }
+  // }, []);
