@@ -68,13 +68,12 @@
 
 .slider-buttons {
   position: absolute;
-  /* background-color: blue; */
+  bottom: 10px;
   display: flex;
   gap: 10px;
   width: 100%;
   justify-content: center;
   & .slide-button {
-    /* position: absolute; */
     bottom: 10px;
     background-color: black;
     opacity: .25;
@@ -82,4 +81,17 @@
     height: 7px;
     border-radius: 50%;
   }
+}
+
+.UniqueRecipie .slick-dots {
+  top: calc(46vh) !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.UniqueRecipie .slick-dots > * {
+  display: block !important;
+  width: fit-content !important;
+  /* border-radius: 15px !important;
+  background-color: rgba(255, 255, 255, 0.3) !important; */
 }
