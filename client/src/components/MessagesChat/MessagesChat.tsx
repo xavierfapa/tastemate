@@ -30,14 +30,13 @@ function MessagesChat() {
   useEffect(() => {
     const senderUserId = user.id;
   
-    // Ahora puedes utilizar directamente receiverId en lugar de buscar en matches
     console.log('cocacola: ', senderUserId, receiverId);
     getConversation(senderUserId, receiverId).then(conversation => {
       console.log(conversation);
       setChatHistory(conversation);
     });
   }, [receiverId]);
-  
+
 
   const submitMessage = handleSubmit(async (message: Message) => {
     const match = matches.find((m) => {
@@ -50,13 +49,21 @@ function MessagesChat() {
 
     const messageObject = {
       senderId: user.id,
-      receiverId: match.user1 === user.id ? match.user2 : match.user1,
+      receiverId: receiverId,
       message: message.message,
       timestamp: Date.now()
     };
 
-    await postMessage(messageObject);
+    // optimistic rendering
     setChatHistory(prevState => [...prevState, messageObject]);
+    try {
+      await postMessage(messageObject);
+    } catch {
+      alert('Failed to send message.');
+      setChatHistory(prevState => prevState.slice(0, prevState.length-2));
+    }
+
+
     setMessageText('');
   });
 
@@ -76,12 +83,14 @@ function MessagesChat() {
       
       <div className="chat-history">
         {chatHistory.map((message, index) => {
-          // const createdAt = new Date(message.createdAt);
-          // const formattedDate = format(createdAt, 'HH:mm');
+          const timestamp = new Date(message.timestamp);
+          console.log('timestamp', timestamp)
+          const formattedDate = format(timestamp, 'HH:mm');
+          console.log('formattedDate', formattedDate)
           return (
             <div key={index} className={message.senderId === user.id ? 'user1-container' : 'user2-container'}>
-              <p className={message.senderId === user.id ? 'user1' : 'user2'}>{message.message}</p>
-              {/* <p className={message.senderId === user.id ? 'user1' : 'user2'}>{message.message}<span className={message.senderId === user.id ? 'date1' : 'date2'}>{formattedDate}</span></p> */}
+              {/* <p className={message.senderId === user.id ? 'user1' : 'user2'}>{message.message}</p> */}
+              <p className={message.senderId === user.id ? 'user1' : 'user2'}>{message.message}<span className={message.senderId === user.id ? 'date1' : 'date2'}>{formattedDate}</span></p>
             </div>
           );
         })}

@@ -5,6 +5,10 @@ const messageSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  timestamp: {
+    type: Number,
+    required: true
+  },
   senderId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
