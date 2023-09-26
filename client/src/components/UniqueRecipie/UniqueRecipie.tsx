@@ -20,8 +20,14 @@ function UniqueRecipie() {
 
   const [recipieData, setRecipieData] =  useState<Recipie | null>(null);
 
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // const [activeImageIndex, setActiveImageIndex] = useState(0);
+  // const [currentIndex, setCurrentIndex] = useState(0);
+  const [isDeleteSecureVisible, setIsDeleteSecureVisible] = useState(false);
+
+  const handleDeleteAlert = () => {
+    console.log('clicked');
+    setIsDeleteSecureVisible(!isDeleteSecureVisible);
+  };
 
   const navigate = useNavigate();
 
@@ -45,8 +51,8 @@ function UniqueRecipie() {
   }
 
   const handleDelete = (recipieId: any) => {
-    console.log('trying to delete');
     deleteRecipieDB(recipieId);
+    setIsDeleteSecureVisible(false);
     navigate('/user-recipies');
   }
 
@@ -59,15 +65,15 @@ function UniqueRecipie() {
     dots: true,
   };
 
-  const goToPreviousSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? (filteredImages.length || 0) - 1 : prevIndex - 1));
-  };
+  // const goToPreviousSlide = () => {
+  //   setCurrentIndex((prevIndex) => (prevIndex === 0 ? (filteredImages.length || 0) - 1 : prevIndex - 1));
+  // };
 
-  const goToNextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === (filteredImages.length || 0) - 1 ? 0 : prevIndex + 1));
-  };
+  // const goToNextSlide = () => {
+  //   setCurrentIndex((prevIndex) => (prevIndex === (filteredImages.length || 0) - 1 ? 0 : prevIndex + 1));
+  // };
 
-  const filteredImages = recipieData?.images.filter(image => image.length > 0) || [];
+  // const filteredImages = recipieData?.images.filter(image => image.length > 0) || [];
   
   return (
     <div className='UniqueRecipie'>
@@ -76,8 +82,13 @@ function UniqueRecipie() {
           <img onClick={goBack} src={goBackIcon} className='goBack-Recipies' />
         </div>
         <div className='trash-edit'>
-          <img onClick={() => handleDelete(recipieId)} src={deleteRecipie} alt="" />
           <img src={editRecipie} alt="" />
+          <div className="trash-container">
+            {/* <img onClick={() => handleDelete(recipieId)} src={deleteRecipie} alt="" /> */}
+            <img onClick={handleDeleteAlert} src={deleteRecipie} alt="" />
+            {isDeleteSecureVisible && <div className="delete-secure" onClick={() => handleDelete(recipieId)} >Are you sure?</div>}
+            {/* <div className="delete-secure">Are you sure?</div> */}
+          </div>
         </div>
       </div>
       {recipieData && (

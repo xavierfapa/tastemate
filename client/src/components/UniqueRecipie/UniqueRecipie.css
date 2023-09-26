@@ -16,6 +16,19 @@
       display: flex;
       gap: 12px;
     }
+    & .trash-container {
+      position: relative;
+      & .delete-secure {
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 15px;
+        padding: 2px 7px 2px 7px;
+        left: -600%;
+        top: -1px;
+        display: block;
+        transition: left 0.3s ease;
+      }
+    }
   }
 }
 
@@ -70,15 +83,3 @@
     border-radius: 50%;
   }
 }
-
-/* .something .slick-dots {
-  top: '';
-  display: flex '';
-  justify-content: '';
-}
-
-.something .slick-dots > * {
-  display: flex '';
-  justify-content: '';
-  width: '';
-} */
