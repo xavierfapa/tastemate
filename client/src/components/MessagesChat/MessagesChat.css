@@ -9,6 +9,7 @@
   display: flex;
   padding: 10px 20px 4px 20px;
   gap: 10px;
+  z-index: 3;
   /* background-color: var(--primary-color); */
   background-color: white;
   border-bottom: 1px solid rgba(128, 128, 128, 0.3);
@@ -58,16 +59,13 @@
       /* background-color: rgba(128, 128, 128, 0.5); */
       background-color: rgb(215, 214, 214);
       margin-right: 60px;
-      /* padding-right: 25px; */
+      padding-right: 40px;
     }
     & .date1 {
-      font-size: 12px;
+      font-size: 10px;
       position: absolute;
-      bottom: 0;
-      /* width: fit-content; */
-      right: 0;
-      background-color: antiquewhite;
-      border-radius: 5px;
+      bottom: 4px;
+      right: 9px;
     }
   }
   & .user2-container {
@@ -81,9 +79,13 @@
       border-radius: 15px;
       margin-left: 60px;
       font-size: 14px;
+      padding-right: 40px;
     }
     & .date2 {
-      font-size: 12px;
+      font-size: 10px;
+      position: absolute;
+      bottom: 4px;
+      right: 9px;
     }
   }
 }

@@ -75,16 +75,14 @@ function MessagesChat() {
         </div>
         <img className="delete" src={deleteIcon} alt="" />
       </div>
-
+      
       <div className="chat-history">
         {chatHistory.map((message, index) => {
           const createdAt = new Date(message.createdAt);
           const formattedDate = format(createdAt, 'HH:mm');
-
           return (
             <div key={index} className={message.senderId === user.id ? 'user1-container' : 'user2-container'}>
               <p className={message.senderId === user.id ? 'user1' : 'user2'}>{message.message}<span className={message.senderId === user.id ? 'date1' : 'date2'}>{formattedDate}</span></p>
-              {/* <p className={message.senderId === user.id ? 'date1' : 'date2'}>{formattedDate}</p> */}
             </div>
           );
         })}
