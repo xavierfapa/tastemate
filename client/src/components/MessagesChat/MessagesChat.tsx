@@ -37,7 +37,6 @@ function MessagesChat() {
     });
   }, [receiverId]);
 
-
   const submitMessage = handleSubmit(async (message: Message) => {
     const match = matches.find((m) => {
       return m.user1 === user.id || m.user2 === user.id;
@@ -62,8 +61,6 @@ function MessagesChat() {
       alert('Failed to send message.');
       setChatHistory(prevState => prevState.slice(0, prevState.length-2));
     }
-
-
     setMessageText('');
   });
 
@@ -84,9 +81,9 @@ function MessagesChat() {
       <div className="chat-history">
         {chatHistory.map((message, index) => {
           const timestamp = new Date(message.timestamp);
-          console.log('timestamp', timestamp)
+          // console.log('timestamp', timestamp)
           const formattedDate = format(timestamp, 'HH:mm');
-          console.log('formattedDate', formattedDate)
+          // console.log('formattedDate', formattedDate)
           return (
             <div key={index} className={message.senderId === user.id ? 'user1-container' : 'user2-container'}>
               {/* <p className={message.senderId === user.id ? 'user1' : 'user2'}>{message.message}</p> */}
@@ -107,32 +104,3 @@ function MessagesChat() {
 }
 
 export default MessagesChat
-
-
-      {/* <div className="chat-history">
-        {chatHistory.map((message, index) => (
-          <div key={index} className={message.senderId === user.id ? 'user1-container' : 'user2-container'}>
-            <p className={message.senderId === user.id ? 'user1' : 'user2'}>{message.message}</p>
-            <p>{message.createdAt}</p>
-          </div>
-        ))}
-      </div> */}
-
-        
-  // useEffect(() => {
-  //   const senderUserId = user.id;
-  //   const { receiverId } = useParams();
-    
-  //   const match = matches.find((m) => {
-  //     return m.user1 === user.id || m.user2 === user.id;
-  //   });
-
-  //   if (match) {
-  //     const receiverUserId = user.id === match.user1 ? match.user2 : match.user1;
-  //     console.log('cocacola: ', senderUserId, receiverUserId);
-  //     getConversation(senderUserId, receiverUserId).then(conversation => {
-  //       console.log(conversation);
-  //       setChatHistory(conversation);
-  //     });
-  //   }
-  // }, []);

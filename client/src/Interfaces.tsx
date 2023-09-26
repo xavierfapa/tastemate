@@ -31,13 +31,6 @@ export type Match = {
   matchedAt: Date
 };
 
-// export type Match = {
-//   user1: string
-//   user2: string
-//   matchedAt: Date
-//   _id: string
-// };
-
 export type Message = {
   message: string
   senderId: string
