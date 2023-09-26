@@ -46,27 +46,41 @@
   padding-bottom: 67px;
   & .user1-container {
     display: flex;
+    /* background-color: rgb(147, 195, 134); */
+    width: fit-content;
     & .user1 {
-      width: fit-content;
+      /* width: fit-content; */
+      position: relative;
       padding: 5px 10px 5px 10px;
       border-radius: 15px;
-      color: white;
-      background-color: rgba(128, 128, 128, 0.5);
+      font-size: 14px;
+      /* color: white; */
+      /* background-color: rgba(128, 128, 128, 0.5); */
+      background-color: rgb(215, 214, 214);
       margin-right: 60px;
+      /* padding-right: 25px; */
     }
     & .date1 {
       font-size: 12px;
+      position: absolute;
+      bottom: 0;
+      /* width: fit-content; */
+      right: 0;
+      background-color: antiquewhite;
+      border-radius: 5px;
     }
   }
   & .user2-container {
     display: flex;
     align-self: flex-end;
+    position: relative;
     & .user2 {
       width: fit-content;
       padding: 5px 10px 5px 10px;
       border: 1px solid rgba(128, 128, 128, 0.5);
       border-radius: 15px;
       margin-left: 60px;
+      font-size: 14px;
     }
     & .date2 {
       font-size: 12px;
@@ -80,7 +94,7 @@
   display: flex;
   width: 100%;
   gap: 5px;
-  border-top: 1px solid rgba(128, 128, 128, 0.5);
+  border-top: 1px solid rgba(128, 128, 128, 0.3);
   padding: 10px 7px 10px 7px;
   background-color: white;
   & input {
@@ -99,7 +113,7 @@
     }
   }
   .send-container {
-    background-color: antiquewhite;
+    background-color: rgb(215, 214, 214);
     display: flex;
     padding: 8px;
     border-radius: 50%;
