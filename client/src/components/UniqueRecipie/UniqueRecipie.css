@@ -84,14 +84,18 @@
 }
 
 .UniqueRecipie .slick-dots {
-  top: calc(46vh) !important;
+  top: calc(47vh) !important;
   display: flex !important;
   justify-content: center !important;
+  /* background-color: rgba(255, 255, 255, 0.3) !important;
+  height: 20px !important;
+  width: 100% !important; */
 }
 
 .UniqueRecipie .slick-dots > * {
   display: block !important;
   width: fit-content !important;
+  /* height: 30px; */
   /* border-radius: 15px !important;
   background-color: rgba(255, 255, 255, 0.3) !important; */
 }

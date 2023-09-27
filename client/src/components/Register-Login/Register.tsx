@@ -25,9 +25,9 @@ function RegisterPage() {
           <input className='register-input' type="text" {...register("username", { required: true })} placeholder='Username' />
           <input className='register-input' type="email" {...register("email", { required: true })} placeholder='Email' />
           <input className='register-input' type="password" {...register("password", { required: true })} placeholder='Password' />
-          <button className='register-button' type="submit" >Register</button>
+          <button className='register-button' type="submit" >Sign up</button>
         </form>
-        <p className='swap-to'>Already have an account? <Link to="/login" className='swap-to-link'>Login</Link></p>
+        <p className='swap-to'>Already have an account? <Link to="/login" className='swap-to-link'>Log in</Link></p>
       </div>
     </div>
   )

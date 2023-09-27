@@ -29,6 +29,9 @@ export async function getMatches (req, res) {
   try {
     const userId = req.params.userId;
     const matches = await Match.find({ $or: [{ user1: userId }, { user2: userId }] });
+    // const matches = await Match.find({ $or: [{ user1: userId }, { user2: userId }] })
+    // .populate('user1')
+    // .populate('user2');
 
     res.status(200).json(matches);
   } catch (error) {

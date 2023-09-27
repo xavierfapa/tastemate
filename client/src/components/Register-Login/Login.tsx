@@ -20,9 +20,9 @@ function LoginPage() {
         <form onSubmit={onSubmit} className='register-form'>
           <input className='register-input' type="email" {...register("email", { required: true })} placeholder='Email' />
           <input className='register-input' type="password" {...register("password", { required: true })} placeholder='Password' />
-          <button className='register-button' type="submit" >Login</button>
+          <button className='register-button' type="submit" >Log in</button>
         </form>
-          <p className='swap-to'>Don't have an account? <Link to="/register" className='swap-to-link'>Register</Link></p>
+          <p className='swap-to'>Don't have an account? <Link to="/register" className='swap-to-link'>Sign up</Link></p>
       </div>
     </div>
   )

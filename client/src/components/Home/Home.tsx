@@ -10,9 +10,9 @@ function Home() {
         <img src={logo}/>
       </div>
       <div className="session">
-        <h3>Register or login</h3>
-        <button><Link to="/register">Register</Link></button>
-        <p>Already have an account? <Link to="/login" className='link'>Login</Link></p>
+        <h3>Sing up or log in</h3>
+        <button><Link to="/register">Sign up</Link></button>
+        <p>Already have an account? <Link to="/login" className='link'>Log in</Link></p>
       </div>
     </div>
   )

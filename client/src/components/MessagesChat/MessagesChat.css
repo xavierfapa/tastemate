@@ -23,7 +23,7 @@
   & .user-img {
     width: 40px;
     height: 40px;
-    background-color: blue;
+    background-color: rgba(128, 128, 128, 0.3);
     border-radius: 14px;
   }
   & .user-info {
@@ -75,7 +75,7 @@
     & .user2 {
       width: fit-content;
       padding: 5px 10px 5px 10px;
-      border: 1px solid rgba(128, 128, 128, 0.5);
+      border: 1px solid rgba(128, 128, 128, 0.2);
       border-radius: 15px;
       margin-left: 60px;
       font-size: 14px;

@@ -8,8 +8,8 @@ import { useAuth } from '../../context/AuthContext';
 
 function MessagesHome() {
   const { matches, setMatches } = useMatch();
-  const navigate = useNavigate();
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   const handleClick = (receiverId: string) => {
     navigate(`/messages-chat/${receiverId}`);

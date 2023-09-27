@@ -26,7 +26,7 @@ function Profile() {
         <div className='profile-content-container'>
           <div className="profile-content">
             <img src={configuration} alt="" />
-            <h3>Configuration</h3>
+            <h3>Settings</h3>
           </div>
           <img className="right-arrow" src={rightArrow} alt="" />
         </div>
