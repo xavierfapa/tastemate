@@ -1,24 +1,13 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+dotenv.config({ path: '../.env' });
 
-dotenv.config();
+const { DB_HOST, DB_NAME } = process.env;
+const mongoDBURI = `mongodb://${DB_HOST}/${DB_NAME}`;
 
-// console.log('process.env:', process.env);
-const { MONGODB_HOST, MONGODB_DATABASE } = process.env;
-const mongoDBURI = `mongodb://${MONGODB_HOST}:${MONGODB_DATABASE}`;
-// console.log('MONGODB_URI:', MONGODB_URI);
-
-// export const connectDB = async () => {
-//   try {
-//     await mongoose.connect(MONGODB_URI);
-//     console.log('DB is connected')
-//   } catch (error) {
-//     console.log(error)
-//   }
-// };
 export const connectDB = async () => {
   try {
-    await mongoose.connect('mongodb://localhost/tastemate');
+    await mongoose.connect(mongoDBURI);
     console.log('DB is connected')
   } catch (error) {
     console.log(error)

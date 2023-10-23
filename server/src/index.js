@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config({ path: '../.env' });
+// console.log(process.env);
 import express from 'express';
 import cors from 'cors';
 
@@ -8,7 +11,8 @@ import messagesRoutes from './routes/messages.routes.js';
 
 import { connectDB } from './db.js';
 
-const PORT = process.env.DB_PORT;
+
+const PORT = process.env.PORT;
 const app = express();
 
 app.use(cors());

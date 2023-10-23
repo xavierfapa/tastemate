@@ -15,7 +15,7 @@ Tastemate is a mobile web application to upload recipes and exchange meals with 
    ```env
       DB_NAME= your DB name
       DB_HOST= your host
-      DB_PORT= your DB port
+      PORT= your DB port
    ```
 3. Set .env.local in client folder:
 
