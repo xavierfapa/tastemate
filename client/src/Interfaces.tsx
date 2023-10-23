@@ -13,6 +13,7 @@ export interface AuthContextType {
   isAuthenticated: boolean
   signup: (user: User) => Promise<void>
   signin: (user: userLoged) => Promise<void>
+  user: User | null;
 }
 
 export type Recipie = {

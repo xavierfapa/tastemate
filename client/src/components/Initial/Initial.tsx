@@ -42,7 +42,7 @@ function Initial() {
     const user2 = user.id;
     // console.log(user1, user2)
     checkIfMatchExists(user1, user2).then(match => {
-      // console.log("caca", match)
+      // console.log(match)
       if (match && match.user1 === user2) {
         console.log(match);
         setMatches(match);

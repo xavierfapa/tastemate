@@ -8,6 +8,7 @@ import messagesRoutes from './routes/messages.routes.js';
 
 import { connectDB } from './db.js';
 
+const PORT = process.env.DB_PORT;
 const app = express();
 
 app.use(cors());
@@ -20,4 +21,4 @@ app.use('/api', messagesRoutes);
 
 connectDB();
 app.listen(3000)
-console.log('Server at port', 3000)
+console.log('Server at port', PORT)

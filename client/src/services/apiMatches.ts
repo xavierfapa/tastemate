@@ -1,6 +1,6 @@
 import { Match } from "../Interfaces";
 
-const BASE_URL = 'http://localhost:3000/api';
+const BASE_URL = import.meta.env.VITE_APP_URL;
 
 export async function postMatch (match: Match) {
   try {
@@ -41,23 +41,6 @@ export async function checkIfMatchExists(user1: string, user2: string) {
     return false;
   }
 }
-
-// export async function checkIfMatchExists(user1: string, user2: string) {
-//   try {
-//     const response = await fetch(`${BASE_URL}/checkmatch/?user1=${user1}&user2=${user2}`);
-//     const data = await response.json();
-    
-//     if (data.matchExists) {
-//       return { matchExists: true, matchInfo: data.matchInfo };
-//     } else {
-//       return { matchExists: false };
-//     }
-//   } catch (error) {
-//     console.log(error);
-//     return { matchExists: false };
-//   }
-// }
-
 
 export async function updateMatch(user1: string, user2: string) {
   try {

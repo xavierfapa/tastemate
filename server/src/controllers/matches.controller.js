@@ -60,7 +60,7 @@ export async function checkIfMatchExists(req, res) {
     return res.status(200).json({ matchExists: false });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Verificaiton error.' });
+    res.status(500).json({ message: 'Verfication error' });
   }
 }
 

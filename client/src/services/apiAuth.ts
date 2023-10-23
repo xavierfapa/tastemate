@@ -1,6 +1,6 @@
 import { User, userLoged } from "../Interfaces";
 
-const BASE_URL = 'http://localhost:3000/api';
+const BASE_URL = import.meta.env.VITE_APP_URL;
 
 const postRequest = async (endpoint: string, data: any) => {
   try {

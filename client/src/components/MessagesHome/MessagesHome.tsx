@@ -1,6 +1,6 @@
 import './MessagesHome.css';
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { getUserMatches } from '../../services/apiMatches';
 import { useMatch } from '../../context/MatchContext';
 import { useAuth } from '../../context/AuthContext';

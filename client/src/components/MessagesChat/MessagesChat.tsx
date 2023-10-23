@@ -85,9 +85,9 @@ function MessagesChat() {
           const formattedDate = format(timestamp, 'HH:mm');
           // console.log('formattedDate', formattedDate)
           return (
-            <div key={index} className={message.senderId === user.id ? 'user1-container' : 'user2-container'}>
-              {/* <p className={message.senderId === user.id ? 'user1' : 'user2'}>{message.message}</p> */}
-              <p className={message.senderId === user.id ? 'user1' : 'user2'}>{message.message}<span className={message.senderId === user.id ? 'date1' : 'date2'}>{formattedDate}</span></p>
+            <div key={index} className={message.senderId === user.id ? 'user2-container' : 'user1-container'}>
+              {/* <p className={message.senderId === user.id ? 'user2' : 'user1'}>{message.message}</p> */}
+              <p className={message.senderId === user.id ? 'user2' : 'user1'}>{message.message}<span className={message.senderId === user.id ? 'date2' : 'date1'}>{formattedDate}</span></p>
             </div>
           );
         })}

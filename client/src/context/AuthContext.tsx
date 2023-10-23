@@ -1,8 +1,8 @@
 import { createContext, useState, useContext, ReactNode } from "react";
 import { registerUser, loginUser } from "../services/apiAuth";
-import { User, userLoged } from "../Interfaces";
+import { User, userLoged, AuthContextType } from "../Interfaces";
 
-export const AuthContext = createContext({});
+export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
