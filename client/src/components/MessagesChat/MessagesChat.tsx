@@ -2,6 +2,7 @@ import './MessagesChat.css';
 import goBackIcon from '../../assets/back-page.svg';
 import deleteIcon from '../../assets/options.png';
 import sendIcon from '../../assets/send-white.png';
+import userProfileImage from '../../assets/user.png';
 
 import { format } from 'date-fns';
 import { useState, useEffect } from 'react';
@@ -70,7 +71,7 @@ function MessagesChat() {
         <div className="my-img">
           <img className='goback-chat' onClick={goBack} src={goBackIcon} />
         </div>
-        <div className="user-img"></div>
+        <img src={userProfileImage} alt="" className='user-img' />
         <div className="user-info">
           <div className="user-name">Username</div>
           <p>Other info</p>

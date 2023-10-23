@@ -1,4 +1,5 @@
 import './MessagesHome.css';
+import userProfileImage from '../../assets/user.png';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getUserMatches } from '../../services/apiMatches';
@@ -29,6 +30,7 @@ function MessagesHome() {
         const otherUser = match.user1 === user.id ? match.user2 : match.user1;
         return (
           <div key={i} onClick={() => handleClick(otherUser)} className="chat-container">
+            <img src={userProfileImage} alt="" className='user-profile-image' />
             <div className="chat-image"></div>
             <div className="chat-container-content">
               <h3>{otherUser}</h3>
